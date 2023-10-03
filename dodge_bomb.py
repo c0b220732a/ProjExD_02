@@ -68,7 +68,7 @@ def main():
             if event.type == pg.QUIT: 
                 return
 
-        if kk_rct.colliderect(bd_rct):  # 練習５：ぶつかってたら
+        if kk_rct.colliderect(bd_rct):  # 練習５：ぶつかってたらGame overのテキストを表示させる
             kk_img = pg.image.load("ex02/fig/1.png")
             text = font.render("Game over", True, (0,0,0))   # 描画する文字列の設定
             screen.blit(text, [20, 100])# 文字列の表示位置
