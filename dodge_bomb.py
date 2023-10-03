@@ -14,6 +14,7 @@ delta = {  # 練習３：移動量辞書
 }
 
 
+
 def check_bound(obj_rct: pg.Rect):
     """
     引数：こうかとんRectかばくだんRect
@@ -26,6 +27,19 @@ def check_bound(obj_rct: pg.Rect):
     if obj_rct.top < 0 or HEIGHT < obj_rct.bottom: # 縦方向判定
         tate = False
     return yoko, tate
+
+# kk_cv = {
+#     (0, -5):pg.transform.rotozoom(n_img, 90, 1.0),
+#     (+5, -5):pg.transform.rotozoom(n_img, 45, 1.0),
+#     (+5, 0):pg.transform.rotozoom(n_img, 45, 1.0),
+#     (+5, +5):pg.transform.rotozoom(n_img, -45, 1.0),
+#     (0, +5):pg.transform.rotozoom(n_img, -90, 1.0),
+#     (-5, +5):pg.transform.rotozoom(pg.transform.flip(n_img, True, False),-135,1.0),
+#     (-5, 0):pg.transform.rotozoom(n_img, True, False),
+#     (-5, +5):pg.transform.rotozoom(pg.transform.flip(n_img, True, False),135,1.0)
+#     }
+    
+    
 
 
 def main():
@@ -45,6 +59,7 @@ def main():
     x, y = random.randint(0, WIDTH), random.randint(0, HEIGHT)
     bd_rct.center = (x, y)  # 練習１：Rectにランダムな座標を設定する
     vx, vy = +5, +5  # 練習２：爆弾の速度
+    font = pg.font.Font(None, 100)
 
     clock = pg.time.Clock()
     tmr = 0
@@ -54,7 +69,11 @@ def main():
                 return
 
         if kk_rct.colliderect(bd_rct):  # 練習５：ぶつかってたら
-            print("ゲームオーバー")
+            kk_img = pg.image.load("ex02/fig/1.png")
+            text = font.render("Game over", True, (0,0,0))   # 描画する文字列の設定
+            screen.blit(text, [20, 100])# 文字列の表示位置
+            pg.display.update()     # 画面を更新
+            print("Game Over")
             return
 
         screen.blit(bg_img, [0, 0])
